@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct CovidCityApp: App {
+    var cityReportStore: CityReportStore = CityReportStore()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(cityReportStore)
         }
     }
 }

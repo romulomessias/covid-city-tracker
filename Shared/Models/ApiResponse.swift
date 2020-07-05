@@ -8,21 +8,10 @@
 import Foundation
 
 // MARK: - ApiResponse
-struct CityReportGroup: Codable {
+struct CityReport: Codable {
     let count: Int
     let next, previous: String?
     let results: [CityReport]
-    
-    var lastReport: CityReport? {
-        results.filter({ $0.isLast }).first
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case count
-        case next
-        case previous
-        case results
-    }
 }
 
 // MARK: - Result
