@@ -8,7 +8,8 @@
 import Foundation
 
 // MARK: - ApiResponse
-struct CityReportGroup: Codable {
+struct CityReportGroup: Codable, Identifiable {
+    var id = UUID()
     let count: Int
     let next, previous: String?
     let results: [CityReport]

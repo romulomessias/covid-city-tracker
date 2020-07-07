@@ -8,7 +8,7 @@
 import Foundation
 
 class CityReportStore: ObservableObject {
-    @Published private(set) var cityReportsGroup: CityReportGroup?
+    @Published private(set) var cityReportsGroup: [String:CityReportGroup] = [:]
     @Published private(set) var isLoadingReports: Bool = true
     
     let apiService = ApiService()
@@ -16,11 +16,11 @@ class CityReportStore: ObservableObject {
     func loadReports(for city: String) {
         let endpoint = Endpoint.search(in: city)
         isLoadingReports = true
-        print("Loadinf")
+        print("Loading")
         apiService.request(endpoint) { result in
             do {
                 let apiResult = try result.get()
-                self.cityReportsGroup = apiResult
+                self.cityReportsGroup[city] = apiResult
             } catch let error {
                 print(error)
             }

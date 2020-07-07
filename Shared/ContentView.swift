@@ -9,23 +9,30 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var cityReportStore: CityReportStore
+    @EnvironmentObject var locationStore: LocationStore
     
-    var city = "Limeira"
+//    var city = "Limeira"
     
     var body: some View {
         VStack {
             if cityReportStore.isLoadingReports {
-                
-                Text("buscando dados de \(city)")
-                
-            } else {
-                if let report = cityReportStore.cityReportsGroup {
-                    CityReportView(report: report)
+                ProgressView {
+                    Text("Atualizando dados")
                 }
+            } else {
                 
+                if
+                    let city = locationStore.currentCity,
+                    let report = cityReportStore.cityReportsGroup[city] {
+                    CityReportView(report: report)
+                    
+                }
             }
-        }.onAppear {
-            cityReportStore.loadReports(for: city)
+        }
+        .onChange(of: locationStore.currentCity) { _ in
+            if let city = locationStore.currentCity {
+                cityReportStore.loadReports(for: city)
+            }
         }
     }
 }

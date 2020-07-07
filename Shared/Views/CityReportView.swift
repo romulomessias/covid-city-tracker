@@ -23,7 +23,9 @@ struct CityReportView: View {
         dateFormatter.dateFormat = "yyyy-MM-DD"
         
         if let date = dateFormatter.date(from: lastReport.date) {
-            dateFormatter.dateFormat = "dd MMMM yyyy"
+            print(date)
+            print(lastReport.date)
+            dateFormatter.dateFormat = "d MMMM yyyy"
             return dateFormatter.string(from: date)
         } else  {
             return nil
@@ -85,24 +87,22 @@ struct CityReportView: View {
             if let numberOfDeaths = report.lastReport?.lastAvailableDeaths,
                let newDeaths = report.lastReport?.newDeaths{
                 VStack(alignment: .center) {
-                    Text("öbitos")
+                    Text("Óbitos")
                     Text("\(numberOfDeaths)")
                         .font(.system(size: 60))
                         .fontWeight(.bold)
-//                        .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
                         .multilineTextAlignment(.center)
                     
                     Text("+\(newDeaths)")
                         .font(.headline)
                         .fontWeight(.bold)
-//                        .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
                         .multilineTextAlignment(.center)
                 }
-                .cornerRadius(10.0)
                 .foregroundColor(Color(red:1, green:0, blue:0.29))
                 .padding(.vertical, 32.0)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .background(Color(red:1, green:0.7, blue:0.78))
+                .cornerRadius(10.0)
                 
             }
             Spacer()

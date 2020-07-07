@@ -20,6 +20,7 @@
 		34A7EB3724B1574E00F0BE47 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A7EB3624B1574E00F0BE47 /* ApiService.swift */; };
 		34A7EB3B24B2259100F0BE47 /* CityReportStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A7EB3A24B2259100F0BE47 /* CityReportStore.swift */; };
 		34A7EB3D24B23E2D00F0BE47 /* CityReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A7EB3C24B23E2D00F0BE47 /* CityReportView.swift */; };
+		34BD2D4824B3F8E900173643 /* LocationStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34BD2D4724B3F8E900173643 /* LocationStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		34A7EB3624B1574E00F0BE47 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		34A7EB3A24B2259100F0BE47 /* CityReportStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityReportStore.swift; sourceTree = "<group>"; };
 		34A7EB3C24B23E2D00F0BE47 /* CityReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityReportView.swift; sourceTree = "<group>"; };
+		34BD2D4724B3F8E900173643 /* LocationStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				34A7EB3A24B2259100F0BE47 /* CityReportStore.swift */,
+				34BD2D4724B3F8E900173643 /* LocationStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				34A7EB3224B148F300F0BE47 /* CityReportGroup.swift in Sources */,
 				34A7EB1E24B147E600F0BE47 /* ContentView.swift in Sources */,
 				34A7EB3424B1533100F0BE47 /* Endpoint.swift in Sources */,
+				34BD2D4824B3F8E900173643 /* LocationStore.swift in Sources */,
 				34A7EB3D24B23E2D00F0BE47 /* CityReportView.swift in Sources */,
 				34A7EB1C24B147E600F0BE47 /* CovidCityApp.swift in Sources */,
 				34A7EB3B24B2259100F0BE47 /* CityReportStore.swift in Sources */,

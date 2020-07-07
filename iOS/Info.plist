@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>this app require you location to display covid data in your current city</string>
 	<key>CFBundleDisplayName</key>
 	<string>Covid City Tracker</string>
 	<key>CFBundleExecutable</key>
