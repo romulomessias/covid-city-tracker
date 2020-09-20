@@ -535,7 +535,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.romulomessias.CovidCity;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.romulomessias.CovidCityTracker;
 				PRODUCT_NAME = CovidCity;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
@@ -557,7 +557,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = dev.romulomessias.CovidCity;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.romulomessias.CovidCityTracker;
 				PRODUCT_NAME = CovidCity;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;

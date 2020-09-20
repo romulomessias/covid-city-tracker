@@ -20,7 +20,8 @@ struct CityReportView: View {
         }
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-DD"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT+0:00")
         
         if let date = dateFormatter.date(from: lastReport.date) {
             print(date)
@@ -42,10 +43,10 @@ struct CityReportView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8.0) {
+        VStack(alignment: .leading, spacing: 0) {
             VStack(alignment: .leading)  {
                 Text(cityName)
-                    .font(.title)
+                    .font(.largeTitle)
                     .fontWeight(.bold)
                     .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
                 
@@ -56,57 +57,61 @@ struct CityReportView: View {
                 }
                 
             }
-            .padding(.all, 10)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 12)
             .frame(maxWidth: .infinity, alignment: .topLeading)
-//            .background(Color(red:0.91, green:0.93, blue:0.94))
-            .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+            .clipped()
             
-            if let numberOfCases = report.lastReport?.lastAvailableConfirmed,
-               let newCases = report.lastReport?.newConfirmed{
-                VStack(alignment: .center) {
-                    Text("Casos confirmados")
-                    Text("\(numberOfCases)")
-                        .font(.system(size: 60))
-                        .fontWeight(.bold)
-                        .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
-                        .multilineTextAlignment(.center)
-                    
-                    Text("+\(newCases)")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
-                        .multilineTextAlignment(.center)
+            VStack(spacing: 8) {
+                if let numberOfCases = report.lastReport?.lastAvailableConfirmed,
+                   let newCases = report.lastReport?.newConfirmed{
+                    VStack(alignment: .center) {
+                        Text("Casos confirmados")
+                            .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
+                        Text("\(numberOfCases)")
+                            .font(.system(size: 60))
+                            .fontWeight(.bold)
+                            .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
+                            .multilineTextAlignment(.center)
+                        
+                        Text("+\(newCases)")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .foregroundColor(Color(red:0.01, green:0.25, blue:0.4))
+                            .multilineTextAlignment(.center)
+                    }
+                    .padding(.vertical, 32.0)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .background(Color(red:0.91, green:0.93, blue:0.94))
+                    .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
+                    .shadow(radius: 0.5)
                 }
-//                .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-                .padding(.vertical, 32.0)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .background(Color(red:0.91, green:0.93, blue:0.94))
-                .cornerRadius(/*@START_MENU_TOKEN@*/10.0/*@END_MENU_TOKEN@*/)
-            }
-            
-            if let numberOfDeaths = report.lastReport?.lastAvailableDeaths,
-               let newDeaths = report.lastReport?.newDeaths{
-                VStack(alignment: .center) {
-                    Text("Óbitos")
-                    Text("\(numberOfDeaths)")
-                        .font(.system(size: 60))
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                    
-                    Text("+\(newDeaths)")
-                        .font(.headline)
-                        .fontWeight(.bold)
-                        .multilineTextAlignment(.center)
-                }
-                .foregroundColor(Color(red:1, green:0, blue:0.29))
-                .padding(.vertical, 32.0)
-                .frame(maxWidth: .infinity, alignment: .center)
-                .background(Color(red:1, green:0.7, blue:0.78))
-                .cornerRadius(10.0)
                 
+                if let numberOfDeaths = report.lastReport?.lastAvailableDeaths,
+                   let newDeaths = report.lastReport?.newDeaths{
+                    VStack(alignment: .center) {
+                        Text("Óbitos")
+                        Text("\(numberOfDeaths)")
+                            .font(.system(size: 60))
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.center)
+                        
+                        Text("+\(newDeaths)")
+                            .font(.headline)
+                            .fontWeight(.bold)
+                            .multilineTextAlignment(.center)
+                    }
+                    .foregroundColor(Color(red:1, green:0, blue:0.29))
+                    .padding(.vertical, 32.0)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .background(Color(red:1, green:0.7, blue:0.78))
+                    .cornerRadius(10.0)
+                    .shadow(radius: 0.5)
+                }
             }
+            .padding(.all, 10)
             Spacer()
-        }.padding(.all, 10)
+        }
     }
 }
 
@@ -133,6 +138,10 @@ struct CityReportView_Previews: PreviewProvider {
         )
         
         reportGroup = CityReportGroup(count: 1, next: nil, previous: nil, results: [report])
-        return CityReportView(report: reportGroup)
+        return Group {
+            CityReportView(report: reportGroup)
+            CityReportView(report: reportGroup)
+                .preferredColorScheme(.dark)
+        }
     }
 }

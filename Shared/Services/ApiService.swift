@@ -8,23 +8,23 @@
 import Foundation
 
 class ApiService {
-    func request(_ endpint: Endpoint,then handler: @escaping (Result<CityReportGroup, NetworkError>) -> Void ) {
+    typealias Handler = (Result<CityReportGroup, NetworkError>) -> Void
+    let decoder = JSONDecoder.init()
+    
+    func request(_ endpint: Endpoint,then handler: @escaping Handler) {
         guard let url = endpint.url else {
             return handler(.failure(.invalidUrls))
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, _, error in
+        let request = URLRequest(url: url, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 60)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
             
             do {
-                let decoder = JSONDecoder.init()
-                print("hello")
-                let reportGroup = try decoder.decode(CityReportGroup.self, from: data!)
-                print("hello2")
+                let reportGroup = try self.decoder.decode(CityReportGroup.self, from: data!)
                 DispatchQueue.main.async {
-                    print("hello3")
                     handler(Result.success(reportGroup))
                 }
-                
             } catch let error {
                 print("error \(error)")
                 DispatchQueue.main.async {
@@ -32,6 +32,7 @@ class ApiService {
                 }
             }
         }
+        
         task.resume()
     }
     

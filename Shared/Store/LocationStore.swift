@@ -41,7 +41,6 @@ extension LocationStore: CLLocationManagerDelegate {
                 return
             }
             
-            print(placemark.locality)
             DispatchQueue.main.async {
                 self.currentCity =  placemark.locality
             }

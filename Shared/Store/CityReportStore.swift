@@ -16,7 +16,7 @@ class CityReportStore: ObservableObject {
     func loadReports(for city: String) {
         let endpoint = Endpoint.search(in: city)
         isLoadingReports = true
-        print("Loading")
+        
         apiService.request(endpoint) { result in
             do {
                 let apiResult = try result.get()
@@ -25,7 +25,6 @@ class CityReportStore: ObservableObject {
                 print(error)
             }
             
-            print("loaded")
             self.isLoadingReports = false
         }
     }
